@@ -15,7 +15,7 @@
 <script setup lang="ts">
 import { ref, computed, watch, onMounted, nextTick } from 'vue';
 import type { ComponentPublicInstance } from 'vue';
-import { createLocalEventBus } from '@/utils';
+import { createLocalEventBus } from '@/modules';
 import DynamicElement from './DynamicElement';
 
 type Props = {

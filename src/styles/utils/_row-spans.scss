@@ -5,7 +5,7 @@
 
   @for $n from 1 to 13 {
     $fraction: math.div($n, 12);
-    $percentage: percentage($fraction);
+    $percentage: math.percentage($fraction);
     $width: if($marginComp, calc(#{$percentage} - #{$marginComp}), $percentage);
 
     &.-span-#{$n} {

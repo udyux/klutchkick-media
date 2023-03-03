@@ -1,0 +1,64 @@
+@use '../utils' as *;
+@use '../color' as *;
+
+.input-search {
+  position: relative;
+  display: inline-block;
+  width: 3rem;
+  margin-top: 0.5rem;
+  padding: 0.5rem 1.75rem 0.5rem 1rem;
+  color: alpha(grey, darkest, 0.5);
+  border-bottom: 1px solid transparent;
+  transition: color 100ms linear, border-color 150ms linear, width 275ms cb();
+
+  &:hover {
+    color: alpha(grey, darkest, 0.75);
+  }
+
+  &.-focus {
+    color: hex(grey, darkest);
+  }
+
+  &.-focus,
+  &.-filled {
+    width: 20rem;
+    border-color: currentcolor;
+  }
+
+  &__field {
+    width: 100%;
+    height: 100%;
+
+    &::placeholder {
+      color: alpha(grey, darkest, 0.4);
+    }
+
+    &::-webkit-search-cancel-button {
+      appearance: none;
+    }
+
+    &:focus-visible {
+      outline: none;
+    }
+  }
+
+  &__icon {
+    position: absolute;
+    top: 50%;
+    right: 0.8rem;
+    transform: translate3d(0, -50%, 0);
+    cursor: pointer;
+    font-size: 1.4rem;
+    transition: opacity 100ms linear;
+
+    &.-clear {
+      top: 45%;
+      font-size: 1.3rem;
+      font-weight: 600;
+    }
+
+    .-focus > & {
+      opacity: 0.75;
+    }
+  }
+}

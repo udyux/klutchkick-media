@@ -1,0 +1,33 @@
+@use '../utils' as *;
+
+.transition-appear {
+  &.-appear-active {
+    transition: transform 425ms cb(circ), opacity 150ms linear;
+    transition-delay: var(--transition-delay, 0);
+  }
+
+  &.-appear-from {
+    opacity: 0;
+
+    &.-appear-up {
+      transform: translate3d(0, var(--translate-by, 1.25rem), 0);
+    }
+
+    &.-appear-right {
+      transform: translate3d(var(--translate-by, -1.25rem), 0, 0);
+    }
+
+    &.-appear-down {
+      transform: translate3d(0, var(--translate-by, -1.25rem), 0);
+    }
+
+    &.-appear-left {
+      transform: translate3d(var(--translate-by, 1.25rem), 0, 0);
+    }
+  }
+
+  &.-appear-to {
+    opacity: 1;
+    transform: translateZ(0);
+  }
+}

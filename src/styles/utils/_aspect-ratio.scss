@@ -6,6 +6,6 @@
   &::before {
     content: '';
     display: block;
-    padding-top: percentage($ratio);
+    padding-top: math.percentage($ratio);
   }
 }

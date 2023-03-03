@@ -1,13 +1,27 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import { MainView } from '../views';
+import { PlaylistIndex, VideoIndex, VideoSingle } from '../views';
+
+export { useRouter, useRoute, RouterLink, RouterView } from 'vue-router';
+export { useQuery } from './useQuery';
+export { useParams } from './useParams';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
-      name: 'main',
-      component: MainView,
+      name: 'playlist-index',
+      component: PlaylistIndex,
+    },
+    {
+      path: '/:playlistId',
+      name: 'video-index',
+      component: VideoIndex,
+    },
+    {
+      path: '/:playlistId/:videoId',
+      name: 'video-single',
+      component: VideoSingle,
     },
   ],
 });

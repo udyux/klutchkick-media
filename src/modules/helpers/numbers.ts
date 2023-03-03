@@ -1,4 +1,4 @@
-export const roundTo = (value: number, toMultiple: number) => {
+export function roundTo(value: number, toMultiple: number) {
   const absMultiple = Math.abs(toMultiple);
   const absValue = Math.abs(value);
   const carry = absValue % absMultiple;
@@ -7,4 +7,4 @@ export const roundTo = (value: number, toMultiple: number) => {
   const decimalShift = 10 ** decimals.length || 1;
   const result = Math.round(rounded * decimalShift) / decimalShift;
   return result * Math.sign(value);
-};
+}

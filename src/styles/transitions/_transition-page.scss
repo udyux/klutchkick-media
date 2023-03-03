@@ -1,0 +1,13 @@
+.transition-page {
+  &-leave-active {
+    transition: opacity 150ms linear;
+  }
+
+  &-leave {
+    opacity: 1;
+  }
+
+  &-leave-to {
+    opacity: 0;
+  }
+}

@@ -1,5 +1,8 @@
 $easings: (
   default: cubic-bezier(0.6, 0.05, 0.01, 0.99),
+  swing: cubic-bezier(0.53, 0.1, 0.14, 0.95),
+  circ: cubic-bezier(0.075, 0.82, 0.165, 1),
+  ease: cubic-bezier(0.25, 0.1, 0.25, 0.1),
 );
 
 @function cb($fn: default) {

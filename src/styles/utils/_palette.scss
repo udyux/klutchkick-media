@@ -1,6 +1,9 @@
+@use 'sass:meta';
+@use 'sass:color';
+
 @function alpha($palette, $option: false, $alpha: false) {
-  $opacity: if($alpha, $alpha, if(type-of($option) == 'number', $option, 1));
-  $variant: if(not $option, default, if(type-of($option) == 'number', default, $option));
+  $opacity: if($alpha, $alpha, if(meta.type-of($option) == 'number', $option, 1));
+  $variant: if(not $option, default, if(meta.type-of($option) == 'number', default, $option));
   $nonDefaultVariant: if($variant == 'default', '', '-#{$variant}');
   @return rgba(#{var(--#{$palette}#{$nonDefaultVariant}-rgb)}, $opacity);
 }
@@ -17,7 +20,7 @@
         $nonDefaultVariant: if($variant == 'default', '', '-#{$variant}');
 
         --#{$paletteName}#{$nonDefaultVariant}-hex: #{$color};
-        --#{$paletteName}#{$nonDefaultVariant}-rgb: #{red($color)},#{green($color)},#{blue($color)};
+        --#{$paletteName}#{$nonDefaultVariant}-rgb: #{color.red($color)},#{color.green($color)},#{color.blue($color)};
       }
     }
   }

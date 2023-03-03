@@ -1,29 +1,22 @@
 @use '../utils' as *;
 
 .layout {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 2.5rem 1.75rem;
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 2.5rem;
+  }
 
   &__title {
     @include type-title;
-    margin-bottom: 4rem;
   }
 
-  &__section {
-    @media (--laptop) {
-      &.-row {
-        display: flex;
-      }
+  &__view {
+    padding: 1.25rem 2.5rem;
+  }
 
-      &.-center {
-        justify-content: center;
-      }
-    }
-
-    & + & {
-      margin-top: 4rem;
-    }
+  &__logo {
+    width: rem(320);
   }
 }
