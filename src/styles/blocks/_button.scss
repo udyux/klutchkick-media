@@ -1,0 +1,15 @@
+@use '../utils' as *;
+@use '../color' as *;
+
+.button {
+  @include type-button;
+  height: rem(48);
+  padding: 0 rem(24);
+  background-color: hex(primary);
+  border-radius: rem(2);
+  transition: background-color 80ms linear;
+
+  &:hover {
+    background-color: hex(primary, dark);
+  }
+}

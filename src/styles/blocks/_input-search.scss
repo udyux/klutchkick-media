@@ -7,16 +7,16 @@
   width: 3rem;
   margin-top: 0.5rem;
   padding: 0.5rem 1.75rem 0.5rem 1rem;
-  color: alpha(grey, darkest, 0.5);
+  color: alpha(grey, dark, 0.5);
   border-bottom: 1px solid transparent;
   transition: color 100ms linear, border-color 150ms linear, width 275ms cb();
 
   &:hover {
-    color: alpha(grey, darkest, 0.75);
+    color: alpha(grey, dark, 0.75);
   }
 
   &.-focus {
-    color: hex(grey, darkest);
+    color: hex(grey, dark);
   }
 
   &.-focus,
@@ -30,7 +30,7 @@
     height: 100%;
 
     &::placeholder {
-      color: alpha(grey, darkest, 0.4);
+      color: alpha(grey, dark, 0.4);
     }
 
     &::-webkit-search-cancel-button {
