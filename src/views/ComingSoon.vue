@@ -71,7 +71,7 @@ import { useLocale, useDevice } from '@/modules';
 const { nextLocale, switchLocale, t } = useLocale();
 const { device } = useDevice();
 
-const videos = ['2r8gxvLTiaA', 'B80PoqOtE_8', 'SmJ8k-NWF4E'];
+const videos = device.tablet ? ['2r8gxvLTiaA', 'B80PoqOtE_8', 'SmJ8k-NWF4E'] : ['2r8gxvLTiaA', 'B80PoqOtE_8'];
 const width = window.innerWidth;
 const height = Math.floor((9 / 16) * window.innerWidth);
 
