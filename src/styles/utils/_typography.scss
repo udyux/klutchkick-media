@@ -22,8 +22,12 @@
 
 @mixin type-banner {
   @include font-display;
-  font-size: rem(80);
+  font-size: rem(60);
   font-weight: 700;
+
+  @media (--tablet) {
+    font-size: rem(80);
+  }
 }
 
 @mixin type-subtitle {

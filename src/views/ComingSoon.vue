@@ -4,6 +4,7 @@
       <figure class="coming-soon__poster" />
 
       <iframe
+        v-if="device.tablet"
         ref="playerNode"
         class="coming-soon__video"
         :class="{ '-ready': videoLoaded }"
@@ -24,23 +25,28 @@
           <img src="/images/klutchkick.svg" alt="klutchkick media" class="coming-soon__logo" />
         </h1>
 
-        <button class="button">Contact us</button>
+        <menu class="coming-soon__menu">
+          <li class="coming-soon__menu-item">
+            <button class="button -borderless" @click="switchLocale">{{ nextLocale.toUpperCase() }}</button>
+          </li>
+
+          <li class="coming-soon__menu-item">
+            <button class="button">{{ t('global.contact_us') }}</button>
+          </li>
+        </menu>
       </header>
 
       <section class="coming-soon__center">
-        <h2 class="coming-soon__banner">Coming soon</h2>
+        <h2 class="coming-soon__banner">{{ t('comingSoon.banner') }}</h2>
         <div class="coming-soon__text">
-          <p>
-            The 2023 drift season is right around the corner! This year, you'll easily find your footage right here.
-            Watch for us on Facebook &amp; Instagram for more info.
-          </p>
+          <p>{{ t('comingSoon.message') }}</p>
         </div>
       </section>
 
       <footer class="coming-soon__row">
         <span>&copy; 2023 | klutchkick media</span>
 
-        <nav>
+        <nav class="coming-soon__social">
           <a
             href="https://www.youtube.com/@klutchkickmedia"
             target="_blank"
@@ -60,6 +66,10 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue';
+import { useLocale, useDevice } from '@/modules';
+
+const { nextLocale, switchLocale, t } = useLocale();
+const { device } = useDevice();
 
 const videos = ['2r8gxvLTiaA', 'B80PoqOtE_8', 'SmJ8k-NWF4E'];
 const width = window.innerWidth;
