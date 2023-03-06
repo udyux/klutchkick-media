@@ -88,7 +88,7 @@ const videoLoaded = ref(false);
 const currentVideoId = computed(() => videos[currentVideoIndex.value]);
 
 const dynamicStyles = computed(() => ({
-  '--image': `url('images/posters/${currentVideoId.value}.jpg')`,
+  '--image': `url('/images/posters/${currentVideoId.value}.jpg')`,
   '--scale': `scale(${scale.value})`,
 }));
 
