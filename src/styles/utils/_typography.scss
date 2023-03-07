@@ -22,10 +22,10 @@
 
 @mixin type-banner {
   @include font-display;
-  font-size: rem(60);
+  font-size: rem(56);
   font-weight: 700;
 
-  @media (--tablet) {
+  @media (--laptop) {
     font-size: rem(80);
   }
 }

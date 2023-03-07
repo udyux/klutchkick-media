@@ -4,7 +4,7 @@
       <figure class="coming-soon__poster" />
 
       <iframe
-        v-if="device.tablet"
+        v-if="device.laptop"
         ref="playerNode"
         class="coming-soon__video"
         :class="{ '-ready': videoLoaded }"
@@ -66,12 +66,13 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue';
+import youTubePlayer from 'youtube-player';
 import { useLocale, useDevice } from '@/modules';
 
 const { nextLocale, switchLocale, t } = useLocale();
 const { device } = useDevice();
 
-const videos = device.tablet ? ['2r8gxvLTiaA', 'B80PoqOtE_8', 'SmJ8k-NWF4E'] : ['2r8gxvLTiaA', 'B80PoqOtE_8'];
+const videos = device.laptop ? ['2r8gxvLTiaA', 'B80PoqOtE_8', 'SmJ8k-NWF4E'] : ['2r8gxvLTiaA', 'B80PoqOtE_8'];
 const width = window.innerWidth;
 const height = Math.floor((9 / 16) * window.innerWidth);
 
@@ -103,7 +104,9 @@ const src = computed(() => {
     controls: 0,
     autoplay: 1,
     loop: 1,
+    enablejsapi: 1,
     playlist: currentVideoId.value,
+    origin: location.origin,
   })
     .map(opt => opt.join('='))
     .join('&');
@@ -118,9 +121,16 @@ onMounted(async () => {
   const { clientHeight } = playerNode.value;
   const ratio = innerHeight / clientHeight;
   if (ratio > 1) scale.value = 0.2 + ratio;
+
+  const player = youTubePlayer(playerNode.value);
+  console.log('adding listener');
+  player.on('stateChange', () => {
+    console.log('state changed');
+  });
 });
 
 function onIframeLoaded() {
+  console.log(location.origin);
   videoLoaded.value = true;
 }
 </script>
