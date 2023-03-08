@@ -1,6 +1,17 @@
 <template>
-  <main class="coming-soon">
-    <video :src="src" :poster="poster" preload="auto" class="coming-soon__video" autoplay muted loop playsinline />
+  <main class="coming-soon" :style="{ '--poster': `url('${poster}')` }">
+    <video
+      :poster="poster"
+      class="coming-soon__video"
+      :class="{ '-playing': isVideoLoaded }"
+      autoplay
+      muted
+      loop
+      playsinline
+      @play="isVideoLoaded = !isVideoLoaded"
+    >
+      <source :src="src" type="video/mp4" />
+    </video>
 
     <div class="coming-soon__content">
       <header class="coming-soon__row">
@@ -27,7 +38,7 @@
       </section>
 
       <footer class="coming-soon__row">
-        <span>&copy; 2023 | klutchkick media</span>
+        <span>&copy; 2023 | Klutchkick media</span>
 
         <nav class="coming-soon__social">
           <a
@@ -56,6 +67,7 @@ const { device } = useDevice();
 
 const videos = ['bg1', 'bg2', 'bg3'];
 const videoResolution = device.tablet ? '1440' : '1080';
+const isVideoLoaded = ref(false);
 
 const startVideoIndex =
   localStorage && localStorage.getItem('bgVideoIndex')
