@@ -1,23 +1,6 @@
 <template>
   <main class="coming-soon">
-    <div class="coming-soon__background" :style="dynamicStyles">
-      <figure class="coming-soon__poster" />
-
-      <iframe
-        v-if="device.laptop"
-        ref="playerNode"
-        class="coming-soon__video"
-        :class="{ '-ready': videoLoaded }"
-        frameborder="0"
-        allowfullscreen
-        allow="autoplay; encrypted-media"
-        :title="currentVideoId"
-        :width="width"
-        :height="height"
-        :src="src"
-        @load="onIframeLoaded"
-      />
-    </div>
+    <video :src="src" :poster="poster" preload="auto" class="coming-soon__video" autoplay muted loop playsinline />
 
     <div class="coming-soon__content">
       <header class="coming-soon__row">
@@ -66,15 +49,13 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue';
-import youTubePlayer from 'youtube-player';
 import { useLocale, useDevice } from '@/modules';
 
 const { nextLocale, switchLocale, t } = useLocale();
 const { device } = useDevice();
 
-const videos = device.laptop ? ['2r8gxvLTiaA', 'B80PoqOtE_8', 'SmJ8k-NWF4E'] : ['2r8gxvLTiaA', 'B80PoqOtE_8'];
-const width = window.innerWidth;
-const height = Math.floor((9 / 16) * window.innerWidth);
+const videos = ['bg1', 'bg2', 'bg3'];
+const videoResolution = device.tablet ? '1440' : '1080';
 
 const startVideoIndex =
   localStorage && localStorage.getItem('bgVideoIndex')
@@ -82,55 +63,14 @@ const startVideoIndex =
     : 0;
 
 const currentVideoIndex = ref(startVideoIndex);
-const playerNode = ref<HTMLIFrameElement | null>(null);
-const scale = ref(1.2);
-const videoLoaded = ref(false);
-
 const currentVideoId = computed(() => videos[currentVideoIndex.value]);
-
-const dynamicStyles = computed(() => ({
-  '--image': `url('/images/posters/${currentVideoId.value}.jpg')`,
-  '--scale': `scale(${scale.value})`,
-}));
+const poster = computed(() => `/images/posters/${currentVideoId.value}.jpg`);
 
 const src = computed(() => {
-  const options = Object.entries({
-    iv_load_policy: 3,
-    rel: 0,
-    modestbranding: 1,
-    autohide: 1,
-    mute: 1,
-    showinfo: 0,
-    controls: 0,
-    autoplay: 1,
-    loop: 1,
-    enablejsapi: 1,
-    playlist: currentVideoId.value,
-    origin: location.origin,
-  })
-    .map(opt => opt.join('='))
-    .join('&');
-
-  return `https://www.youtube.com/embed/${currentVideoId.value}?${options}`;
+  return `https://video.klutchkickmedia.com/${currentVideoId.value}.${videoResolution}.mp4`;
 });
 
 onMounted(async () => {
   if (localStorage) localStorage.setItem('bgVideoIndex', `${startVideoIndex + 1}`);
-  if (!playerNode.value) return;
-  const { innerHeight } = window;
-  const { clientHeight } = playerNode.value;
-  const ratio = innerHeight / clientHeight;
-  if (ratio > 1) scale.value = 0.2 + ratio;
-
-  const player = youTubePlayer(playerNode.value);
-  console.log('adding listener');
-  player.on('stateChange', () => {
-    console.log('state changed');
-  });
 });
-
-function onIframeLoaded() {
-  console.log(location.origin);
-  videoLoaded.value = true;
-}
 </script>
