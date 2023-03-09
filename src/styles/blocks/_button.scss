@@ -8,6 +8,7 @@
   background-color: hex(primary);
   border-radius: rem(2);
   transition: background-color 80ms linear;
+  white-space: nowrap;
 
   &:hover {
     background-color: hex(primary, dark);
@@ -17,5 +18,11 @@
     height: auto;
     padding: 0;
     background-color: transparent;
+  }
+
+  &.-icon {
+    padding: 0 rem(12);
+    font-size: rem(24);
+    line-height: 0;
   }
 }

@@ -15,7 +15,7 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue';
-import { useQuery } from '@/router';
+import { useQuery } from '@/modules';
 import { Icon } from '@/components';
 
 const { query, updateQueryKey } = useQuery();

@@ -14,7 +14,7 @@
     </video>
 
     <div class="coming-soon__content">
-      <header class="coming-soon__row">
+      <header class="coming-soon__header">
         <h1>
           <img src="/images/klutchkick.svg" alt="klutchkick media" class="coming-soon__logo" />
         </h1>
@@ -25,7 +25,13 @@
           </li>
 
           <li class="coming-soon__menu-item">
-            <button class="button">{{ t('global.contact_us') }}</button>
+            <button class="button" :class="{ '-icon': !device.tablet }">
+              <template v-if="device.tablet">
+                {{ t('global.contact_us') }}
+              </template>
+
+              <Icon v-else name="mail" />
+            </button>
           </li>
         </menu>
       </header>
@@ -37,7 +43,7 @@
         </div>
       </section>
 
-      <footer class="coming-soon__row">
+      <footer class="coming-soon__footer">
         <span>&copy; 2023 | Klutchkick media</span>
 
         <nav class="coming-soon__social">
@@ -59,6 +65,7 @@
 </template>
 
 <script setup lang="ts">
+import { Icon } from '@/components';
 import { ref, computed, onMounted } from 'vue';
 import { useLocale, useDevice } from '@/modules';
 
@@ -79,7 +86,8 @@ const currentVideoId = computed(() => videos[currentVideoIndex.value]);
 const poster = computed(() => `/images/posters/${currentVideoId.value}.jpg`);
 
 const src = computed(() => {
-  return `https://video.klutchkickmedia.com/${currentVideoId.value}.${videoResolution}.mp4`;
+  const domain = import.meta.env.DEV ? '/videos' : 'https://video.klutchkickmedia.com';
+  return `${domain}/${currentVideoId.value}.${videoResolution}.mp4`;
 });
 
 onMounted(async () => {
