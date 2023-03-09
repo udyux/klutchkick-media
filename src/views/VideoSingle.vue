@@ -6,7 +6,7 @@
 </template>
 
 <script setup lang="ts">
-import { useParams } from '@/router';
+import { useParams } from '@/modules';
 import { YouTubePlayer, Timeframes } from '@/components';
 
 const params = useParams<{ playlistId: string; videoId: string }>();

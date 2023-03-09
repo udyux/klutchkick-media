@@ -21,7 +21,7 @@
 
 <script setup lang="ts">
 import { onBeforeMount } from 'vue';
-import { RouterLink } from '@/router';
+import { RouterLink } from 'vue-router';
 import { usePlaylistsStore } from '@/stores';
 
 const store = usePlaylistsStore();

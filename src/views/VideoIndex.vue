@@ -23,9 +23,9 @@
 
 <script setup lang="ts">
 import { computed, watch, onBeforeMount } from 'vue';
+import { RouterLink } from 'vue-router';
 import { usePlaylistsStore } from '@/stores';
-import { useSearch } from '@/modules';
-import { useParams, useQuery, RouterLink } from '@/router';
+import { useSearch, useParams, useQuery } from '@/modules';
 
 const store = usePlaylistsStore();
 const params = useParams();
