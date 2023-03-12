@@ -73,7 +73,7 @@ const { nextLocale, switchLocale, t } = useLocale();
 const { device } = useDevice();
 
 const videos = ['bg1', 'bg2', 'bg3'];
-const videoResolution = device.tablet ? '1440' : '1080';
+const videoResolution = device.tablet ? '1440' : '720';
 const isVideoLoaded = ref(false);
 
 const startVideoIndex =
